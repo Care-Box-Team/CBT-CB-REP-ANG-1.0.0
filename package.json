@@ -8,7 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "build:single-spa:CB-ANG": "ng build CB-ANG --prod --deploy-url http://localhost:4200/",
+    "build:single-spa:CB-ANG": "ng build --prod",
     "serve:single-spa:CB-ANG": "ng s --project CB-ANG --disable-host-check --port 4200 --deploy-url http://localhost:4200/ --live-reload false"
   },
   "private": true,
