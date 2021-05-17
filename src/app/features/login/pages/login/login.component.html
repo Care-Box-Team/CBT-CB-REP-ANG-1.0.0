@@ -1,0 +1,26 @@
+<div class="login">
+  <div [formGroup]="loginFormGroup" class="login__card">
+    <h1 class="login__main-title">Administrador CareBox</h1>
+
+    <h2 class="login__secondary-title">Login</h2>
+    <p class="login__additional-message">Ingrese sus credenciales</p>
+
+    <div class="text-box">
+      <p class="text-box__title">Email</p>
+      <input formControlName="email" class="text-box__input" type="text" placeholder="Ingrese su correo electrónico" />
+    </div>
+
+    <div class="text-box">
+      <p class="text-box__title">Password</p>
+      <input formControlName="password" class="text-box__input" type="text" placeholder="Ingrese su contraseña" />
+    </div>
+
+    <button class="login__enter" (click)="enter()">Ingresar</button>
+  </div>
+</div>
+
+<app-message *ngIf="validateForms && loginFormGroup.invalid">
+  <div *ngIf="loginFormGroup.get('email').hasError('required') || loginFormGroup.get('password').hasError('required')">
+    Ingresar el email y la contraseña
+  </div>
+</app-message>
