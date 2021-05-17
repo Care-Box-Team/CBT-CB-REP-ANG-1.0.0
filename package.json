@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --prod --base-href ./",
+    "build": "ng build --prod --base-href https://d2qg77q1sf6r2k.cloudfront.net/single-spa-angular/dist/",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
