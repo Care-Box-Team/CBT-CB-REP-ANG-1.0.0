@@ -1,0 +1,11 @@
+.primary-button {
+  background-color: var(--primary-color);
+}
+
+.success-button {
+  background-color: var(--success-color);
+}
+
+.error-button {
+  background-color: var(--error-color);
+}

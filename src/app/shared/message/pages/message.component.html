@@ -1,0 +1,7 @@
+<div class="message" *ngIf="openMessage">
+  <div class="message__container">
+    <h1 *ngIf="title" class="message__title">{{ title }}</h1>
+    <ng-content></ng-content>
+  </div>
+  <div class="message__close-button" (click)="eventCloseMessage()">x</div>
+</div>
