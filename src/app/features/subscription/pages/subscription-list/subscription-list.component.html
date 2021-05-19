@@ -1,0 +1,54 @@
+<div class="subscription-list">
+  <h1 class="subscription-list__main-title">Suscripciones</h1>
+
+  <h2 class="subscription-list__secondary-title">Filtro</h2>
+
+  <div [formGroup]="subscriptionFormGroup" class="subscription-list__form">
+    <div class="text-box">
+      <p class="text-box__title">Nombre</p>
+      <input formControlName="name" class="text-box__input" type="text" placeholder="Nombres" />
+    </div>
+
+    <div class="text-box">
+      <p class="text-box__title">Apellidos</p>
+      <input formControlName="lastName" class="text-box__input" type="text" placeholder="Apellidos" />
+    </div>
+
+    <div class="text-box">
+      <p class="text-box__title">Correo</p>
+      <input formControlName="email" class="text-box__input" type="text" placeholder="Correo electrónico" />
+    </div>
+
+    <button class="primary-button" (click)="eventClickFind()">Buscar</button>
+  </div>
+
+  <div class="table">
+    <div class="table__row">
+      <div class="table__column table__title">Código</div>
+      <div class="table__column table__title">Nombre</div>
+      <div class="table__column table__title">Email</div>
+      <div class="table__column table__title">Fecha de Entrega</div>
+      <div class="table__column table__title">Entregado</div>
+      <div class="table__column table__title">¿Box Enviado?</div>
+    </div>
+    <div class="table__row" *ngFor="let subscription of subscriptions">
+      <div class="table__column">{{ subscription.idSubscription }}</div>
+      <div class="table__column">
+        Agregar name en <br />
+        respuesta <br />/subscriptions<br />/ listTodaySubscription
+      </div>
+      <div class="table__column">
+        Agregar email en <br />
+        respuesta <br />/subscriptions<br />/ listTodaySubscription
+      </div>
+      <div class="table__column">{{ subscription.deliveryDate }}</div>
+      <div class="table__column">
+        <button *ngIf="subscription.deliveredThisMonth" class="success-button">Entregado</button>
+        <div *ngIf="!subscription.deliveredThisMonth" class="table__column">
+          <button class="warning-button">No Entregado</button>
+        </div>
+      </div>
+      <div class="table__column"><input class="checkbox" type="checkbox" /></div>
+    </div>
+  </div>
+</div>

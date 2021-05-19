@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { EmptyRouteComponent } from './empty-route/empty-route.component';
 
 const routes: Routes = [
   {
     path: '',
-    loadChildren: () =>
-      import('./features/login/login.module').then((m) => m.LoginModule),
+    loadChildren: () => import('./features/login/login.module').then((m) => m.LoginModule),
   },
   {
-    path: '**',
-    redirectTo: '/',
-    pathMatch: 'full',
+    path: 'subscription',
+    loadChildren: () => import('./features/subscription/subscription.module').then((m) => m.SubscriptionModule),
   },
+  { path: '**', component: EmptyRouteComponent },
 ];
 
 @NgModule({
