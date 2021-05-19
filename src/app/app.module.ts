@@ -14,6 +14,7 @@ import { MessageHttpResponseInterceptor } from './core/interceptor/message-http-
     HttpClientModule,
     ToastNoAnimationModule.forRoot({
       maxOpened: 1,
+      autoDismiss: true,
       disableTimeOut: true,
       positionClass: 'toast-bottom-center',
       preventDuplicates: true,

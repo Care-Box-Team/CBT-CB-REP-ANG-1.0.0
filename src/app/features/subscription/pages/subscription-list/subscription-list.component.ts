@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { ComponentClass } from 'src/app/core/classes/component.class';
 import { SubscriptionModel } from 'src/app/core/models/subscription.model';
 import { SubscriptionService } from 'src/app/core/services/subscription.service';
+import { SubscriptionUpdateDeliveredThisMonthRequestDTO } from '../../../../core/dtos/subscription.dto';
 
 @Component({
   selector: 'app-subscription-list',
@@ -24,10 +25,10 @@ export class SubscriptionListComponent extends ComponentClass implements OnInit 
 
   ngOnInit(): void {
     this.buildSubscriptionFormGroup();
-    this.loadSubscription();
+    this.loadSubscriptions();
   }
 
-  async loadSubscription() {
+  async loadSubscriptions() {
     this.subscriptions = await this.subscriptionService.getSubscriptions().toPromise();
   }
 
@@ -40,4 +41,26 @@ export class SubscriptionListComponent extends ComponentClass implements OnInit 
   }
 
   eventClickFind() {}
+
+  eventUpdateDeliveredThisMonth(deliveredThisMonth, idSubscription) {
+    const subscriptionUpdateDeliveredThisMonthRequestDTO: SubscriptionUpdateDeliveredThisMonthRequestDTO = {
+      idSubscription: idSubscription,
+      deliveredThisMonth: deliveredThisMonth?.target?.checked,
+    };
+
+    this.subscriptionService.updateDeliveredThisMonth(subscriptionUpdateDeliveredThisMonthRequestDTO).subscribe(() => {
+      this.updateValueOfSubscriptionList(subscriptionUpdateDeliveredThisMonthRequestDTO);
+    });
+  }
+
+  private updateValueOfSubscriptionList(
+    subscriptionUpdateDeliveredThisMonthRequestDTO: SubscriptionUpdateDeliveredThisMonthRequestDTO
+  ) {
+    this.subscriptions.map((subscription: SubscriptionModel) => {
+      if (subscription.idSubscription == subscriptionUpdateDeliveredThisMonthRequestDTO.idSubscription) {
+        subscription.deliveredThisMonth = subscriptionUpdateDeliveredThisMonthRequestDTO.deliveredThisMonth;
+      }
+      return subscription;
+    });
+  }
 }

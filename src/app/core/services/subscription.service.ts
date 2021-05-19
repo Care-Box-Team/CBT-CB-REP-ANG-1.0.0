@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { SubscriptionListResponseDTO } from '../dtos/subscription.dto';
+import { SubscriptionListResponseDTO, SubscriptionUpdateDeliveredThisMonthRequestDTO } from '../dtos/subscription.dto';
 import { SubscriptionModel } from '../models/subscription.model';
 
 @Injectable({
@@ -14,10 +14,19 @@ export class SubscriptionService {
 
   getSubscriptions(): Observable<SubscriptionModel[]> {
     const URL = `${environment.API_URL}/subscriptions/listTodaySubscription`;
+
     return this.httpClient.get<SubscriptionListResponseDTO>(URL).pipe(
       map((subscriptionListResponseDTO) => {
         return subscriptionListResponseDTO.subscriptions;
       })
     );
+  }
+
+  updateDeliveredThisMonth(
+    subscriptionUpdateDeliveredThisMonthRequestDTO: SubscriptionUpdateDeliveredThisMonthRequestDTO
+  ) {
+    const URL = `${environment.API_URL}/subscriptions/updateDeliveredThisMonth`;
+
+    return this.httpClient.put(URL, subscriptionUpdateDeliveredThisMonthRequestDTO);
   }
 }
