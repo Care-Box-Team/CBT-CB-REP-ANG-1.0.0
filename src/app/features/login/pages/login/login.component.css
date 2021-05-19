@@ -54,7 +54,7 @@
   border-color: #bfbfbf;
 }
 
-.login__enter {
+.primary-button {
   margin-top: 0.5rem;
   padding: 1rem 2rem;
   border-radius: 4px;
@@ -63,6 +63,6 @@
   background-color: var(--primary-color);
 }
 
-.login__enter:hover {
+.primary-button:hover {
   cursor: pointer;
 }

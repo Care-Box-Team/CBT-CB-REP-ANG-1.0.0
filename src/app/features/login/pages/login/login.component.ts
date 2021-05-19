@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ComponentClass } from 'src/app/core/classes/component.class';
 import { LoginRequestDTO } from 'src/app/core/dtos/login.dto';
@@ -13,7 +14,7 @@ import { LoginService } from 'src/app/core/services/login.service';
 export class LoginComponent extends ComponentClass implements OnInit {
   loginFormGroup: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private loginService: LoginService) {
+  constructor(private router: Router, private formBuilder: FormBuilder, private loginService: LoginService) {
     super();
   }
 
@@ -36,6 +37,8 @@ export class LoginComponent extends ComponentClass implements OnInit {
         password: this.loginFormGroup.get('password').value,
       };
       await this.loginService.enter(loginRequestDTO).toPromise();
+      this.router.navigate(['/subscription/list']);
     }
+    this.doNotValidateForms();
   }
 }
