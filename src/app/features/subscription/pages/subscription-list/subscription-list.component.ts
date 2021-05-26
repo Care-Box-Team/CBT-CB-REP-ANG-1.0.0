@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { ComponentClass } from 'src/app/core/classes/component.class';
 import { SubscriptionModel } from 'src/app/core/models/subscription.model';
 import { SubscriptionService } from 'src/app/core/services/subscription.service';
@@ -15,11 +14,7 @@ export class SubscriptionListComponent extends ComponentClass implements OnInit 
   subscriptionFormGroup: FormGroup;
   subscriptions: SubscriptionModel[] = [];
 
-  constructor(
-    private router: Router,
-    private formBuilder: FormBuilder,
-    private subscriptionService: SubscriptionService
-  ) {
+  constructor(private formBuilder: FormBuilder, private subscriptionService: SubscriptionService) {
     super();
   }
 
@@ -48,9 +43,11 @@ export class SubscriptionListComponent extends ComponentClass implements OnInit 
       deliveredThisMonth: deliveredThisMonth?.target?.checked,
     };
 
-    this.subscriptionService.updateDeliveredThisMonth(subscriptionUpdateDeliveredThisMonthRequestDTO).subscribe(() => {
-      this.updateValueOfSubscriptionList(subscriptionUpdateDeliveredThisMonthRequestDTO);
-    });
+    this.subscriptionService
+      .updateDeliveredThisMonthOfSubscription(subscriptionUpdateDeliveredThisMonthRequestDTO)
+      .subscribe(() => {
+        this.updateValueOfSubscriptionList(subscriptionUpdateDeliveredThisMonthRequestDTO);
+      });
   }
 
   private updateValueOfSubscriptionList(

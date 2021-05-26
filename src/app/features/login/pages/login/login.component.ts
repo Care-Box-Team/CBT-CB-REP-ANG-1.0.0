@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ComponentClass } from 'src/app/core/classes/component.class';
 import { LoginRequestDTO } from 'src/app/core/dtos/login.dto';
+import { AdministratorModel } from 'src/app/core/models/administrator.model';
 import { LoginService } from 'src/app/core/services/login.service';
 
 @Component({
@@ -36,8 +37,10 @@ export class LoginComponent extends ComponentClass implements OnInit {
         email: this.loginFormGroup.get('email').value,
         password: this.loginFormGroup.get('password').value,
       };
-      await this.loginService.enter(loginRequestDTO).toPromise();
-      this.router.navigate(['/subscription/list']);
+      const administratorModel: AdministratorModel = await this.loginService.enter(loginRequestDTO).toPromise();
+      if (administratorModel) {
+        this.router.navigate(['/subscription/list']);
+      }
     }
     this.doNotValidateForms();
   }

@@ -4,9 +4,10 @@ import { SubscriptionListComponent } from './pages/subscription-list/subscriptio
 import { SubscriptionRoutingModule } from './subscription-routing.module';
 import { LayoutsModule } from 'src/app/shared/layouts/layouts.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { UpdateMonthlyDeliveryComponent } from './pages/update-monthly-delivery/update-monthly-delivery.component';
 
 @NgModule({
-  declarations: [SubscriptionListComponent],
+  declarations: [SubscriptionListComponent, UpdateMonthlyDeliveryComponent],
   imports: [CommonModule, SubscriptionRoutingModule, LayoutsModule, ReactiveFormsModule],
 })
 export class SubscriptionModule {}
