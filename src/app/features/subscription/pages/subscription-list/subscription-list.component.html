@@ -34,12 +34,10 @@
     <div class="table__row" *ngFor="let subscription of subscriptions">
       <div class="table__column">{{ subscription.idSubscription }}</div>
       <div class="table__column">
-        Agregar name en <br />
-        respuesta <br />/subscriptions<br />/ listTodaySubscription
+        {{ subscription.client.names + '' + subscription.client.lastNames }}
       </div>
       <div class="table__column">
-        Agregar email en <br />
-        respuesta <br />/subscriptions<br />/ listTodaySubscription
+        {{ subscription.client.userLogin.email }}
       </div>
       <div class="table__column">{{ subscription.deliveryDate }}</div>
       <div class="table__column">
@@ -52,6 +50,7 @@
         <input
           class="checkbox"
           type="checkbox"
+          [checked]="subscription.deliveredThisMonth"
           (change)="eventUpdateDeliveredThisMonth($event, subscription.idSubscription)"
         />
       </div>

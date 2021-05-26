@@ -22,11 +22,17 @@ export class SubscriptionService {
     );
   }
 
-  updateDeliveredThisMonth(
+  updateDeliveredThisMonthOfSubscription(
     subscriptionUpdateDeliveredThisMonthRequestDTO: SubscriptionUpdateDeliveredThisMonthRequestDTO
   ) {
     const URL = `${environment.API_URL}/subscriptions/updateDeliveredThisMonth`;
 
     return this.httpClient.put(URL, subscriptionUpdateDeliveredThisMonthRequestDTO);
+  }
+
+  updateDeliveredThisMonthOfSubscriptions() {
+    const URL = `${environment.API_URL}/subscriptions/montlyUpdate`;
+
+    return this.httpClient.get(URL);
   }
 }
