@@ -16,7 +16,7 @@
 
     <div class="text-box">
       <p class="text-box__title">Correo</p>
-      <input formControlName="email" class="text-box__input" type="text" placeholder="Correo electrónico" />
+      <input formControlName="email" class="text-box__input" type="text" (keyup.enter)="eventClickFind()" placeholder="Correo electrónico" />
     </div>
 
     <button class="primary-button" (click)="eventClickFind()">Buscar</button>

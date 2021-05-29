@@ -7,15 +7,32 @@
 
     <div class="text-box">
       <p class="text-box__title">Email</p>
-      <input formControlName="email" class="text-box__input" type="text" placeholder="Ingrese su correo electrónico" />
+      <input
+        formControlName="email"
+        class="text-box__input"
+        type="text"
+        (keyup.enter)="enter()"
+        placeholder="Ingrese su correo electrónico"
+      />
     </div>
 
     <div class="text-box">
       <p class="text-box__title">Password</p>
-      <input formControlName="password" class="text-box__input" type="password" placeholder="Ingrese su contraseña" />
+      <input
+        formControlName="password"
+        class="text-box__input"
+        type="password"
+        (keyup.enter)="enter()"
+        placeholder="Ingrese su contraseña"
+      />
     </div>
 
     <button class="primary-button" (click)="enter()">Ingresar</button>
+
+    <div class="login__exit-container">
+      <p class="login__question">¿Eres cliente?</p>
+      <a class="login__login-client-link" href="/client">Ingresa aquí</a>
+    </div>
   </div>
 </div>
 
