@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -11,6 +11,20 @@ import { SubscriptionModel } from '../models/subscription.model';
 })
 export class SubscriptionService {
   constructor(private httpClient: HttpClient) {}
+
+  getSubscriptionsByEmail(email: string): Observable<SubscriptionModel[]> {
+    const URL = `${environment.API_URL}/subscriptions/listByEmail`;
+
+    return this.httpClient
+      .get<SubscriptionListResponseDTO>(URL, {
+        params: new HttpParams().append('email', email),
+      })
+      .pipe(
+        map((subscriptionListResponseDTO) => {
+          return subscriptionListResponseDTO.subscriptions;
+        })
+      );
+  }
 
   getSubscriptions(): Observable<SubscriptionModel[]> {
     const URL = `${environment.API_URL}/subscriptions/listTodaySubscription`;
@@ -33,6 +47,6 @@ export class SubscriptionService {
   updateDeliveredThisMonthOfSubscriptions() {
     const URL = `${environment.API_URL}/subscriptions/montlyUpdate`;
 
-    return this.httpClient.get(URL);
+    return this.httpClient.put(URL, {});
   }
 }

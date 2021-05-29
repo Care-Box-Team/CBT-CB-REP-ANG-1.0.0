@@ -35,7 +35,11 @@ export class SubscriptionListComponent extends ComponentClass implements OnInit 
     });
   }
 
-  eventClickFind() {}
+  async eventClickFind() {
+    this.subscriptions = await this.subscriptionService
+      .getSubscriptionsByEmail(this.subscriptionFormGroup.value.email)
+      .toPromise();
+  }
 
   eventUpdateDeliveredThisMonth(deliveredThisMonth, idSubscription) {
     const subscriptionUpdateDeliveredThisMonthRequestDTO: SubscriptionUpdateDeliveredThisMonthRequestDTO = {

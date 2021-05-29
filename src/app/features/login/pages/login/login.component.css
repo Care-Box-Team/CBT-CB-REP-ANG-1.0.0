@@ -66,3 +66,22 @@
 .primary-button:hover {
   cursor: pointer;
 }
+
+.login__exit-container {
+  margin-top: 2rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.login__question {
+  font-size: 1.1rem;
+}
+
+.login__login-client-link {
+  color: #000;
+  text-decoration: underline;
+  text-align: center;
+}
